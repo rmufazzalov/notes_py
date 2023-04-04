@@ -16,17 +16,18 @@ def new_file():
     text.pack()  # вставляем текстовое окно
     file_name = 'Без названия'
     text.delete('1.0', END)  # очищаем текстовое окно
+    filedate = 'Дата изменения файла: ' + \
+        str(time.ctime()) + '\n'
+    text.insert('1.0', filedate)
     noteid = 'note ID: ' + str(uuid.uuid4()) + '\n'
-    text.insert('1.0', noteid)
+    text.insert('2.0', noteid)
 
 
 def save_as():
     out = asksaveasfile(mode='w', defaultextension='.json')
-    data = text.get('1.0', END)
-    data = str(data)
+    data = text.get('2.0', END)
     try:
-        # out.write(data.rstrip())
-        out.write(data)
+        out.write(data.rstrip())
     except Exception:
         messagebox.showerror('Не получилось сохранить файл')
 
@@ -71,16 +72,12 @@ file_menu = Menu(menu_bar)
 # file_menu.add_command(label='Удалить файл', command=delete_file)
 # menu_bar.add_cascade(label='Файл', menu=file_menu)
 
-menu_bar.add_command(label='Новый', command=new_file)
-menu_bar.add_command(label='Открыть', command=open_file)
+menu_bar.add_command(label='Новый файл', command=new_file)
+menu_bar.add_command(label='Открыть файл', command=open_file)
 menu_bar.add_command(label='Сохранить как', command=save_as)
 menu_bar.add_command(label='Удалить файл', command=delete_file)
 
 root.config(menu=menu_bar)
 root.mainloop()
 
-
-# Надо доделать запись в первую строку даты при сохранении файла
-# Во вторую строку записывать ID
-# Проверить чтоб не дублировалось это всё
 # Проверить возможность работы с json, может быть по полям всё организовать получится?
