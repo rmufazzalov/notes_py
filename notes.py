@@ -11,7 +11,7 @@ def new_file():
 
 
 def save_as():
-    out = asksaveasfile(mode='w', defaultextension='.txt')
+    out = asksaveasfile(mode='w', defaultextension='.json')
     data = text.get('1.0', END)
     try:
         out.write(data.rstrip())
@@ -35,12 +35,15 @@ root.title('Заметки')
 root.geometry('400x400')
 
 text = Text(root, width=400, height=400)
-text.pack  # вставляем текстовое окно
+text.pack()  # вставляем текстовое окно
 
 menu_bar = Menu(root)
 file_menu = Menu(menu_bar)
+
+# добавляем меню
+file_menu.add_command(label='Новый', command=new_file)
+file_menu.add_command(label='Открыть', command=open_file)
+file_menu.add_command(label='Сохранить как', command=save_as)
 menu_bar.add_cascade(label='Файл', menu=file_menu)
-
-
 root.config(menu=menu_bar)
 root.mainloop()
