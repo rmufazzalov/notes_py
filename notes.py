@@ -63,6 +63,7 @@ root.geometry('400x400')
 
 text = Text(root, width=400, height=400)
 menu_bar = Menu(root)
+# для вложенного списка меню, пока отказался от этого
 file_menu = Menu(menu_bar)
 
 # добавляем меню
@@ -79,5 +80,3 @@ menu_bar.add_command(label='Удалить файл', command=delete_file)
 
 root.config(menu=menu_bar)
 root.mainloop()
-
-# Проверить возможность работы с json, может быть по полям всё организовать получится?
