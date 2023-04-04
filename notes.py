@@ -65,10 +65,22 @@ menu_bar = Menu(root)
 file_menu = Menu(menu_bar)
 
 # добавляем меню
-file_menu.add_command(label='Новый', command=new_file)
-file_menu.add_command(label='Открыть', command=open_file)
-file_menu.add_command(label='Сохранить как', command=save_as)
-file_menu.add_command(label='Удалить файл', command=delete_file)
-menu_bar.add_cascade(label='Файл', menu=file_menu)
+# file_menu.add_command(label='Новый', command=new_file)
+# file_menu.add_command(label='Открыть', command=open_file)
+# file_menu.add_command(label='Сохранить как', command=save_as)
+# file_menu.add_command(label='Удалить файл', command=delete_file)
+# menu_bar.add_cascade(label='Файл', menu=file_menu)
+
+menu_bar.add_command(label='Новый', command=new_file)
+menu_bar.add_command(label='Открыть', command=open_file)
+menu_bar.add_command(label='Сохранить как', command=save_as)
+menu_bar.add_command(label='Удалить файл', command=delete_file)
+
 root.config(menu=menu_bar)
 root.mainloop()
+
+
+# Надо доделать запись в первую строку даты при сохранении файла
+# Во вторую строку записывать ID
+# Проверить чтоб не дублировалось это всё
+# Проверить возможность работы с json, может быть по полям всё организовать получится?
