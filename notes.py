@@ -1,6 +1,9 @@
 from tkinter import *
 from tkinter.filedialog import asksaveasfile, askopenfile
+from tkinter import filedialog
 from tkinter import messagebox
+from tkinter.messagebox import showinfo
+import os
 file_name = None
 
 
@@ -17,6 +20,15 @@ def save_as():
         out.write(data.rstrip())
     except Exception:
         messagebox.showerror('Не получилось сохранить файл')
+
+
+def delete_file():
+    rmfile = filedialog.askopenfilename()
+    try:
+        os.remove(rmfile)
+        showinfo(title='Файл удалён', message=rmfile)
+    except Exception:
+        messagebox.showerror('Не получилось удалить файл')
 
 
 def open_file():
@@ -44,6 +56,7 @@ file_menu = Menu(menu_bar)
 file_menu.add_command(label='Новый', command=new_file)
 file_menu.add_command(label='Открыть', command=open_file)
 file_menu.add_command(label='Сохранить как', command=save_as)
+file_menu.add_command(label='Удалить файл', command=delete_file)
 menu_bar.add_cascade(label='Файл', menu=file_menu)
 root.config(menu=menu_bar)
 root.mainloop()
